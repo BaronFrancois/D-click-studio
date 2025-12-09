@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>D'click Studio | Photographe Épinal</title>
-    <meta name="description" content="Photographe professionnel & Laboratoire photo basé à Epinal (88 – Vosges)" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>D'click Studio | Photographe & Labo Épinal</title>
+    <meta name="description" content="Photographe professionnel & Laboratoire photo basé à Epinal (88 – Vosges). Studio, Labo, Tirages géants, Reportages mariage et entreprise." />
+    
+    <!-- Prevent 404 for favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for standalone usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Vanilla) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -34,10 +46,13 @@
         }
       }
     </script>
+
     <style>
       body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background-color: #000;
+        color: white;
       }
       .hide-scrollbar::-webkit-scrollbar {
         display: none;
@@ -46,28 +61,396 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
-      .animation-delay-100 {
-        animation-delay: 100ms;
+      .animation-delay-100 { animation-delay: 100ms; }
+      .animation-delay-200 { animation-delay: 200ms; }
+      .animation-delay-300 { animation-delay: 300ms; }
+      
+      /* Glass effect utilities */
+      .glass {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
-      .animation-delay-200 {
-        animation-delay: 200ms;
-      }
-      .animation-delay-300 {
-        animation-delay: 300ms;
+      .glass-card {
+        background: rgba(23, 23, 23, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1"
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
   }
 }
 </script>
 </head>
-  <body class="bg-black text-white selection:bg-white/20">
-    <div id="root"></div>
-  </body>
+<body class="selection:bg-apple-blue/30">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i data-lucide="camera" class="h-6 w-6 text-white"></i>
+                    <span class="text-white font-semibold text-lg tracking-tight">D'click Studio</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#studio" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Studio</a>
+                        <a href="#labo" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Labo</a>
+                        <a href="#team" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">L'Équipe</a>
+                        <a href="#locations" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Zones</a>
+                        <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass absolute w-full border-b border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#studio" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium mobile-link">Studio</a>
+                <a href="#labo" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium mobile-link">Labo</a>
+                <a href="#team" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium mobile-link">L'Équipe</a>
+                <a href="#locations" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium mobile-link">Zones</a>
+                <a href="#contact" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium mobile-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop" alt="Studio Background" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+            <h2 class="text-apple-blue font-semibold tracking-widest text-sm md:text-base uppercase mb-4 animate-fade-in-up">
+                Épinal (88) • Vosges
+            </h2>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 animate-fade-in-up animation-delay-100">
+                D'click Studio.
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-200 font-light mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
+                Photographe professionnel & Laboratoire photo.
+                <span class="text-gray-400 text-lg md:text-xl mt-4 block">
+                    Du shooting studio au tirage géant d'un mètre de large.
+                </span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-300">
+                <a href="#contact" class="group bg-white text-black px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-gray-200 transition-all transform hover:scale-105">
+                    Prendre Rendez-vous
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#studio" class="text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-all border border-white/30 backdrop-blur-sm">
+                    Découvrir nos services
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="studio" class="py-24 bg-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Expertise Complète</h2>
+                <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                    Un savoir-faire unique réunissant la créativité du studio et la technicité d'un laboratoire professionnel.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Studio Card -->
+                <div class="group relative overflow-hidden rounded-3xl glass-card p-8 md:p-12 hover:border-white/30 transition-all duration-500">
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center justify-center p-3 bg-apple-blue/10 rounded-2xl mb-6">
+                            <i data-lucide="camera" class="text-apple-blue w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Le Studio</h3>
+                        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                            C’est au sein de notre nouveau studio situé à Épinal que nous réalisons vos plus beaux clichés.
+                        </p>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-apple-blue mr-3 mt-0.5"></i> Mariage & Reportages</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-apple-blue mr-3 mt-0.5"></i> Grossesse & Naissance</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-apple-blue mr-3 mt-0.5"></i> Mode, Book & Portrait d'entreprise</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-apple-blue mr-3 mt-0.5"></i> Événements privés & professionnels</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Labo Card -->
+                <div id="labo" class="group relative overflow-hidden rounded-3xl glass-card p-8 md:p-12 hover:border-white/30 transition-all duration-500">
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center justify-center p-3 bg-purple-500/10 rounded-2xl mb-6">
+                            <i data-lucide="printer" class="text-purple-400 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Le Labo</h3>
+                        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                            Tous travaux de labo photo avec traitement d’images et développements professionnels.
+                        </p>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-purple-400 mr-3 mt-0.5"></i> Développement pellicules (argentique)</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-purple-400 mr-3 mt-0.5"></i> Tirages photos tous supports</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-purple-400 mr-3 mt-0.5"></i> Restaurations de photos anciennes</li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-5 h-5 text-purple-400 mr-3 mt-0.5"></i> Conception de livres photos</li>
+                        </ul>
+                        <div class="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
+                            <p class="text-sm text-gray-300">
+                                <span class="text-purple-400 font-semibold">Exclusif :</span> Agrandissements géants grâce à notre traceur (jusqu'à 1 mètre de large) et borne de sélection pour tirages immédiats (smartphone & réseaux sociaux).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-neutral-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight mb-12">L'Équipe</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Marc -->
+                <div class="group relative">
+                    <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" alt="Marc" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-1">Marc</h3>
+                        <p class="text-apple-blue font-medium text-sm">Photographe professionnel</p>
+                    </div>
+                </div>
+
+                <!-- Stéphanie -->
+                <div class="group relative">
+                    <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900">
+                        <img src="https://images.unsplash.com/photo-1554048612-387768052bf7?q=80&w=800&auto=format&fit=crop" alt="Stéphanie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-1">Stéphanie</h3>
+                        <p class="text-apple-blue font-medium text-sm">Photographe diplômée</p>
+                        <p class="text-gray-400 text-xs mt-1">Portraitiste de France</p>
+                    </div>
+                </div>
+
+                <!-- Fabrice -->
+                <div class="group relative">
+                    <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Fabrice" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-1">Fabrice</h3>
+                        <p class="text-apple-blue font-medium text-sm">Photographe diplômé</p>
+                        <p class="text-gray-400 text-xs mt-1">Portraitiste de France</p>
+                    </div>
+                </div>
+
+                <!-- Jordane -->
+                <div class="group relative">
+                    <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-900">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop" alt="Jordane" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold text-white mb-1">Jordane</h3>
+                        <p class="text-apple-blue font-medium text-sm">Assistant photographe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="py-24 bg-black border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Zones d'Intervention</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Déplacements sur toute la Lorraine (Alsace, Champagne-Ardenne, Franche-Comté...) pour vos séances & reportages.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- VOSGES -->
+                <div class="p-6 rounded-2xl bg-neutral-900/50 hover:bg-neutral-900 transition-colors border border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+                        <h3 class="text-white font-semibold">VOSGES (88)</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed pl-8">
+                        Epinal, Saint-Dié-des-Vosges, Gérardmer, Golbey, Remiremont, Neufchâteau, Mirecourt...
+                    </p>
+                </div>
+                
+                <!-- MOSELLE -->
+                <div class="p-6 rounded-2xl bg-neutral-900/50 hover:bg-neutral-900 transition-colors border border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+                        <h3 class="text-white font-semibold">MOSELLE (57)</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed pl-8">
+                        Metz, Thionville, Saint-Avold...
+                    </p>
+                </div>
+
+                <!-- MEURTHE ET MOSELLE -->
+                <div class="p-6 rounded-2xl bg-neutral-900/50 hover:bg-neutral-900 transition-colors border border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+                        <h3 class="text-white font-semibold">MEURTHE ET MOSELLE (54)</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed pl-8">
+                        Nancy, Lunéville, Toul, Pont-à-Mousson...
+                    </p>
+                </div>
+
+                <!-- OTHER REGIONS -->
+                <div class="p-6 rounded-2xl bg-neutral-900/50 hover:bg-neutral-900 transition-colors border border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+                        <h3 class="text-white font-semibold">HAUTE MARNE (52)</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed pl-8">Chaumont, Langres...</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-neutral-900/50 hover:bg-neutral-900 transition-colors border border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+                        <h3 class="text-white font-semibold">MEUSE (55)</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed pl-8">Bar-le-Duc, Verdun, Commercy...</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-neutral-900/50 flex flex-col justify-center border border-white/5">
+                    <p class="text-gray-400 text-sm mb-2 font-semibold">Mais aussi...</p>
+                    <p class="text-sm text-gray-500 italic">
+                        BAS RHIN (67) : Strasbourg, Haguenau...<br>
+                        HAUTE SAONE (70) : Vesoul, Gray...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-neutral-950 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-8">
+                        Contactez-nous.
+                    </h2>
+                    <p class="text-xl text-gray-400 mb-8 max-w-md">
+                        22 Rue Saint Michel - 88000 EPINAL
+                    </p>
+                    
+                    <div class="flex flex-col gap-6">
+                        <a href="tel:0329351532" class="flex items-center gap-4 text-white hover:text-apple-blue transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-xl font-medium">03 29 35 15 32</span>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=22+Rue+Saint+Michel+88000+EPINAL" target="_blank" class="flex items-center gap-4 text-white hover:text-apple-blue transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xl">Y aller</span>
+                                <span class="text-gray-500 text-sm">Ouvrir dans Maps</span>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-600 group-hover:text-apple-blue ml-auto"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="h-80 lg:h-auto rounded-3xl overflow-hidden bg-neutral-900 relative group border border-white/10">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2633.9876543210123!2d6.44!3d48.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4793a65000000000%3A0x0000000000000000!2s22%20Rue%20Saint-Michel%2C%2088000%20%C3%89pinal!5e0!3m2!1sfr!2sfr!4v1600000000000!5m2!1sfr!2sfr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        class="group-hover:filter-none transition-all duration-700">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 D'click Studio. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Script -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+        let isMenuOpen = false;
+
+        btn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                menu.classList.remove('hidden');
+                // Change icon to X (handled by re-rendering or swapping classes, but simple toggle here)
+                btn.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+            } else {
+                menu.classList.add('hidden');
+                btn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                menu.classList.add('hidden');
+                btn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
 </html>
