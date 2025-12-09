@@ -10,7 +10,7 @@ const Services: React.FC = () => {
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Expertise Complète</h2>
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-            Un savoir-faire unique réunissant la créativité du studio et la technicité du laboratoire.
+            Un savoir-faire unique réunissant la créativité du studio et la technicité d'un laboratoire professionnel à Épinal.
           </p>
         </div>
 
@@ -26,8 +26,8 @@ const Services: React.FC = () => {
               </div>
               
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center p-3 bg-blue-500/10 rounded-2xl mb-6">
-                  <service.icon className="text-blue-400 w-8 h-8" />
+                <div className="inline-flex items-center justify-center p-3 bg-apple-blue/10 rounded-2xl mb-6">
+                  <service.icon className="text-apple-blue w-8 h-8" />
                 </div>
                 
                 <h3 className="text-3xl font-bold text-white mb-4">{service.title}</h3>
@@ -38,7 +38,7 @@ const Services: React.FC = () => {
                 <ul className="space-y-4">
                   {service.items.map((item) => (
                     <li key={item} className="flex items-start text-gray-300">
-                      <Check className="w-5 h-5 text-blue-500 mr-3 shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-apple-blue mr-3 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -46,8 +46,15 @@ const Services: React.FC = () => {
 
                 {idx === 1 && (
                   <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
-                    <p className="text-sm text-gray-400">
-                      <span className="text-white font-semibold">Le + D'click :</span> Agrandissements géants jusqu'à 1 mètre de large et tirages immédiats depuis smartphone.
+                    <p className="text-sm text-gray-300">
+                      <span className="text-apple-blue font-semibold">Le + D'click :</span> Réalisation d'agrandissements géants grâce à notre traceur (1m de large) et borne de sélection pour tirages immédiats.
+                    </p>
+                  </div>
+                )}
+                {idx === 0 && (
+                  <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
+                    <p className="text-sm text-gray-300">
+                      <span className="text-apple-blue font-semibold">Mobilité :</span> Notre équipe se déplace sur toute la Lorraine (Vosges, Moselle, Meurthe-et-Moselle...) et au-delà.
                     </p>
                   </div>
                 )}

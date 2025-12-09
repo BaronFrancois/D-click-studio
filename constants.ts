@@ -3,25 +3,25 @@ import { Camera, Printer, Image as ImageIcon, Users, MapPin, Phone, Instagram, F
 export const TEAM_MEMBERS = [
   {
     name: "Marc",
-    role: "Photographe Professionnel",
-    image: "https://picsum.photos/400/500?grayscale&random=1"
+    role: "Photographe professionnel",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop"
   },
   {
     name: "Stéphanie",
     role: "Photographe diplômée",
     subRole: "Portraitiste de France",
-    image: "https://picsum.photos/400/500?grayscale&random=2"
+    image: "https://images.unsplash.com/photo-1554048612-387768052bf7?q=80&w=800&auto=format&fit=crop"
   },
   {
     name: "Fabrice",
     role: "Photographe diplômé",
     subRole: "Portraitiste de France",
-    image: "https://picsum.photos/400/500?grayscale&random=3"
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
   },
   {
     name: "Jordane",
     role: "Assistant photographe",
-    image: "https://picsum.photos/400/500?grayscale&random=4"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
@@ -38,26 +38,26 @@ export const SERVICE_AREAS = [
 export const SERVICES = [
   {
     title: "Le Studio",
-    description: "Shooting photo professionnel pour immortaliser vos moments.",
+    description: "Shooting photos en studio et reportages extérieurs pour tous vos événements.",
     icon: Camera,
     items: [
-      "Mariage & Événements",
+      "Mariage & Reportages",
       "Grossesse & Naissance",
       "Mode & Book",
-      "Portrait Corporate",
-      "Événements privés"
+      "Portrait d'Entreprise",
+      "Événements privés & professionnels"
     ]
   },
   {
     title: "Le Labo",
-    description: "Développement et tirage de haute qualité sur place.",
+    description: "Traitement d'images, développement et tirages sur tous supports.",
     icon: Printer,
     items: [
-      "Développement Argentique",
-      "Tirages Grand Format (1m+)",
-      "Restauration photos anciennes",
-      "Livres Photos",
-      "Borne tirage immédiat"
+      "Développement Argentique & Numérique",
+      "Tirages Géants (Traceur 1 mètre de large)",
+      "Restauration de photos anciennes",
+      "Conception de Livres Photos",
+      "Borne tirage immédiat (Smartphone & Réseaux)"
     ]
   }
 ];
